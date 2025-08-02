@@ -77,3 +77,142 @@ footer {
   background-color: #eee;
   margin-top: 2rem;
 }
+/* ✨ Make Aaron's portfolio look a bit fancier with animated  */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  /* Gradient background that slowly moves  */
+  background: linear-gradient(-45deg,
+    #667eea, #764ba2,
+    #f093fb, #f5576c,
+    #4facfe, #00f2fe
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* Layer to soften the background so text is easier to read */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* Slight white overlay  */
+  background: rgba(255, 255, 255, 0.9);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* /* 💫 Add some floating sparkles  */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+
+  background-size: 100px 100px, 150px 150px, 200px 200px;
+  animation: floatParticles 20s linear infinite;
+
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Animate the gradient background sideways */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+@keyframes floatParticles {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);  
+  }
+}
+
+/* Sections get a bit of glassy look with soft entry animation */
+section {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 2rem auto 2rem auto;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Slight stagger on section fade-in — not perfect */
+section:nth-child(2) { animation-delay: 0.2s; }
+section:nth-child(3) { animation-delay: 0.4s; }
+section:nth-child(4) { animation-delay: 0.6s; }
+section:nth-child(5) { animation-delay: 0.8s; }
+section:nth-child(6) { animation-delay: 1s; }
+section:nth-child(7) { animation-delay: 1.2s; }
+
+@keyframes fadeInUp {
+  to {
+    transform: translateY(0);  
+    opacity: 1;
+  }
+}
+
+/* Header tweaks —  dark translucent bar look here */
+header {
+  background: rgba(34, 34, 34, 0.9);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px); 
+}
+
+/* Link hover animations  */
+.project a,
+nav a {
+  transition: all 0.3s ease;
+}
+
+.project a:hover {
+  transform: translateY(-2px);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Buttons in contact form */
+.contact-form button {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+}
